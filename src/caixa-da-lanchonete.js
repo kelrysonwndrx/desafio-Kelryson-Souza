@@ -1,6 +1,8 @@
 
 class CaixaDaLanchonete {
 
+//  - Cardápio com valores de cada item
+
     cardapio = {
         cafe: 3.00,
         chantily: 1.50,
@@ -31,7 +33,7 @@ class CaixaDaLanchonete {
             return "Não há itens no carrinho de compra!"
         } else {
 
-            //  
+            //  - As strings do array recebido como parâmetro são separadas pelo marcador ","
 
                 for(var i = 0; i < itens.length; i++){
                     var aux = itens[i].split(",")
@@ -56,7 +58,10 @@ class CaixaDaLanchonete {
                             return "Quantidade inválida!"
                         }else{
 
-                        //
+                        /* - A primeira string indicando o item pedido é colocada no array "produto" enquanto a segunda string 
+                           referente a quantidade é extraído o seu valor em float e multiplicado com o respectivo preço do item
+                           pedido consultado no dicionário "cardapio". Logo após o resultado dessa operação é colocado no array "valores".
+                        */
 
                             produto.push(aux[0])
                             valores.push(parseFloat(aux[1])*(this.cardapio[aux[0]]))
@@ -72,6 +77,9 @@ class CaixaDaLanchonete {
                 if(((produto.includes("chantily")) && !(produto.includes("cafe"))) || (produto.includes("queijo")) && !(produto.includes("sanduiche"))){
                     return "Item extra não pode ser pedido sem o principal"
                 } else{
+
+                //  - Os valores do array "valores" são somados resultando no preço total dos itens pedidos.
+
                     precoFinal = valores.reduce((accumulator,value) => accumulator + value,0);
 
                 //  - Pagamento em dinheiro tem 5% de desconto
@@ -95,8 +103,4 @@ class CaixaDaLanchonete {
 }
 
 export { CaixaDaLanchonete };
-
-var caixa = new CaixaDaLanchonete();
-
-console.log(caixa.calcularValorDaCompra('debito', ['cafe,1', 'sanduiche,1', 'queijo,1', 'chantily,1']))
 
